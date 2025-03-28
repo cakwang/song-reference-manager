@@ -1,0 +1,803 @@
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+.container {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 10px 20px 20px; /* Reduced top padding */
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* Header styles */
+.top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 0; /* Reduced vertical padding */
+    margin-bottom: 10px; /* Reduced bottom margin */
+}
+
+.top-row h1 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #333;
+}
+
+.header-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.action-btn {
+    padding: 8px 16px;
+    background-color: #4a4a4a;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: all 0.2s ease;
+}
+
+.action-btn:hover {
+    background-color: #333;
+    transform: translateY(-2px);
+}
+
+/* Export button with gradient */
+#export-btn {
+    background: linear-gradient(to right, #29f19c, #02a1f9);
+    transition: all 0.3s ease;
+}
+
+#export-btn:hover {
+    background: linear-gradient(to right, #20d889, #0290e0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transform: none;
+}
+
+#import-btn {
+    background: #BBB;
+    transition: all 0.3s ease;
+}
+
+/* Reset button specific styles */
+.reset-btn {
+    background-color: #BBB;
+    padding: 8px 10px;
+}
+
+.reset-btn:hover {
+    background-color: #d9534f;
+}
+
+/* Add/Rename Project button */
+.add-btn {
+    padding: 8px 15px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.add-btn:hover {
+    background-color: #45a049;
+}
+
+/* Main content layout */
+.content {
+    display: flex;
+    gap: 20px;
+    flex: 1;
+    overflow: auto;
+}
+
+/* Left frame styles */
+.left-frame {
+    width: 25%;
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    padding-bottom: 40px; /* Added padding at the bottom to make room for the footer */
+    overflow-y: auto;
+    position: relative;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: #555;
+}
+
+.required {
+    color: #f44336;
+    margin-left: 2px;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: border-color 0.2s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: #4CAF50;
+    outline: none;
+}
+
+.form-group textarea {
+    resize: vertical;
+    font-family: inherit;
+    font-size: inherit;
+}
+
+/* Form layout */
+.form-row {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.form-row .form-group {
+    flex: 1;
+}
+
+.form-row .timestamp-group {
+    flex: 0 0 120px; /* Fixed width for timestamp field */
+}
+
+/* Make sure standalone form groups still have bottom margin */
+.form-group:not(.form-row .form-group) {
+    margin-bottom: 15px;
+}
+
+/* Tags styling */
+.tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 5px;
+}
+
+.tag-item {
+    position: relative;
+}
+
+.tag-item input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.tag-item label {
+    display: inline-block;
+    padding: 6px 12px;
+    background-color: #f0f0f0;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+}
+
+.tag-item input[type="checkbox"]:checked + label {
+    background-color: #4CAF50;
+    color: white;
+    box-shadow: 0 2px 5px rgba(76, 175, 80, 0.3);
+}
+
+.tag-item label:hover {
+    background-color: #e0e0e0;
+}
+
+.tag-item input[type="checkbox"]:checked + label:hover {
+    background-color: #3e8e41;
+}
+
+/* Project selection */
+.project-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.project-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.project-item {
+    position: relative;
+}
+
+.project-item input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.project-item label {
+    display: inline-block;
+    padding: 6px 12px;
+    background-color: #f0f0f0;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: all 0.2s ease;
+}
+
+.project-item input[type="radio"]:checked + label {
+    background-color: #4a4a4a;
+    color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.project-item label:hover {
+    background-color: #e0e0e0;
+}
+
+.project-item input[type="radio"]:checked + label:hover {
+    background-color: #333;
+}
+
+.add-project-item {
+    margin-top: 5px;
+}
+
+#add-project-btn {
+    color: #4CAF50;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+#add-project-btn:hover {
+    text-decoration: underline;
+}
+
+/* Form submit button */
+.form-submit {
+    margin-top: 20px;
+}
+
+.add-reference-btn {
+    width: 100%;
+    padding: 24px;
+    margin-top: 12px;
+    background: linear-gradient(to right, #29f19c, #02a1f9);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 600;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Match body font */
+    letter-spacing: 0.5px; /* Reduced from 1px */
+    transition: all 0.3s ease;
+}
+
+.add-reference-btn:hover {
+    background: linear-gradient(to right, #20d889, #0290e0);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Right frame styles */
+.right-frame {
+    width: 75%;
+    overflow-y: auto;
+    padding-right: 8px; /* Add padding to create space between content and scrollbar */
+}
+
+.projects-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.project-section {
+    background-color: white;
+    border-radius: 8px;
+    overflow: visible; /* Changed from hidden to visible to allow dropdowns to extend beyond */
+}
+
+.project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    background-color: #c9ffd8;
+    cursor: pointer;
+}
+
+.project-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.project-title h2 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+}
+
+.toggle-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #555;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+}
+
+.project-actions {
+    display: none;
+    align-items: center;
+    gap: 10px;
+}
+
+.project-header:hover .project-actions {
+    display: flex;
+}
+
+.color-picker {
+    display: flex;
+    gap: 5px;
+}
+
+.color-btn {
+    width: 20px;
+    height: 20px;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.move-up-btn,
+.move-down-btn,
+.rename-btn,
+.delete-project-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #555;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.move-up-btn:hover,
+.move-down-btn:hover,
+.rename-btn:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.delete-project-btn:hover {
+    background-color: rgba(244, 67, 54, 0.1);
+    color: #f44336;
+}
+
+.delete-project-btn[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.project-content {
+    padding: 15px;
+    overflow: hidden; /* Keep overflow hidden for the content area only */
+}
+
+/* Tag columns layout */
+.tag-columns {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0; /* Remove gap to allow borders to touch */
+}
+
+.tag-column {
+    min-width: 0;
+    padding: 0 10px;
+    border-right: 1px solid #e0e0e0;
+}
+
+.tag-column:last-child {
+    border-right: none;
+}
+
+.tag-column h3 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 10px;
+    text-align: left;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #eee;
+}
+
+.cards-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-height: 50px; /* Minimum height for empty columns */
+}
+
+/* Reference card styles */
+.reference-card {
+    background-color: #F7F7F7;
+    border-radius: 6px;
+    padding: 12px;
+    margin-bottom: 10px;
+    position: relative;
+    transition: all 0.2s ease;
+    padding-bottom: 40px; /* Add padding at bottom to prevent overlap with icons */
+}
+
+.reference-card:hover {
+    transform: translateY(-2px);
+}
+
+.reference-card h4 {
+    margin: 0 0 8px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #333;
+}
+
+.reference-card h4 a {
+    color: #333;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.reference-card h4 a:hover {
+    color: #4CAF50;
+    text-decoration: underline;
+}
+
+.reference-card p {
+    margin: 8px 0;
+    font-size: 14px;
+    color: #555;
+}
+
+.reference-card .timestamp {
+    font-size: 13px;
+    color: #777;
+    font-style: italic;
+    width: 120px; /* Adjusted width for timestamp */
+}
+
+.card-actions {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    display: flex;
+    gap: 5px;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.reference-card:hover .card-actions {
+    opacity: 1;
+}
+
+.card-actions button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.delete-btn {
+    color: #f44336;
+}
+
+.move-btn {
+    color: #2196F3;
+}
+
+.card-actions button:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.delete-btn:hover {
+    color: #d32f2f;
+}
+
+.move-btn:hover {
+    color: #1976D2;
+}
+
+/* Star/favorite button */
+.star-btn {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    opacity: 0;
+    color: #aaa; /* Gray color for the outline star */
+}
+
+.reference-card:hover .star-btn {
+    opacity: 1;
+}
+
+.star-btn.starred {
+    opacity: 1;
+    color: #FFD700; /* Gold color for the filled star */
+}
+
+.star-btn:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Move card dropdown */
+.move-dropdown-container {
+    position: fixed;
+    z-index: 9999;
+}
+
+.move-dropdown {
+    background-color: white;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    min-width: 150px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    max-height: 300px; /* Set maximum height */
+    overflow-y: auto; /* Add scroll if content exceeds max height */
+}
+
+.move-dropdown-item {
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.move-dropdown-item:hover {
+    background-color: #f5f5f5;
+}
+
+.move-dropdown-item.current {
+    background-color: #e0e0e0;
+    font-weight: 500;
+}
+
+/* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.modal.active {
+    display: flex;
+    opacity: 1;
+}
+
+.modal-content {
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    width: 90%;
+    max-width: 400px;
+    position: relative;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.modal-header h2 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+}
+
+.close-modal {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #555;
+}
+
+.modal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.modal-form input {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.modal-form button {
+    padding: 8px 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+/* Reset modal styles */
+.modal-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.cancel-btn {
+    padding: 8px 15px;
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.cancel-btn:hover {
+    background-color: #5a6268;
+}
+
+.reset-confirm-btn {
+    padding: 8px 15px;
+    background-color: #d9534f;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.reset-confirm-btn:hover {
+    background-color: #c82333;
+}
+
+/* Notification styles */
+.notification {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    border-radius: 4px;
+    color: white;
+    font-weight: bold;
+    z-index: 1000;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.3s, transform 0.3s;
+}
+
+.notification.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.notification.success {
+    background-color: #4CAF50;
+}
+
+.notification.error {
+    background-color: #f44336;
+}
+
+/* Footer text */
+.footer-text {
+    font-size: 12px;
+    color: #BBB;
+    text-align: center;
+    font-style: italic;
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    width: 100%;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+    .tag-columns {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .content {
+        flex-direction: column;
+    }
+    
+    .left-frame, 
+    .right-frame {
+        width: 100%;
+    }
+    
+    .tag-columns {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .tag-columns {
+        grid-template-columns: 1fr;
+    }
+    
+    .top-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .header-buttons {
+        width: 100%;
+        justify-content: space-between;
+    }
+}
